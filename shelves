@@ -1,0 +1,36 @@
+mport shelve
+
+def create_table():
+with shelve.open('mydata') as db:
+db['table'] = {'name': 'Angelina', 'age': 18, 'country': 'Russia'}
+
+def query_table():
+with shelve.open('mydata') as db:
+table = db.get('table', {})
+print(table)
+
+def exit_program():
+print("Exiting...")
+exit()
+
+menu_options = {
+'1': create_table,
+'2': update_table,
+'3': query_table,
+'4': about_program,
+'5': exit_program
+}
+
+while True:
+print("Menu:")
+print("1. Create Table")
+print("2. Update Table")
+print("3. Query Table")
+print("4. About Program")
+print("5. Exit")
+choice = input("Enter your choice: ")
+if choice in menu_options:
+menu_options[choice]()
+print()
+else:
+print(" Please try again.")
